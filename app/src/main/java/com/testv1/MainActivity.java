@@ -9,27 +9,20 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.crash.FirebaseCrash;
+
 public class MainActivity extends AppCompatActivity {
     EditText editText;
     Button btnGo;
     TextView tvResults;
     String input;
 
-    //    public int sumAllDigits(String input) {
-//        int number = Integer.valueOf(input.replaceAll("\\D+", ""));
-//        int sum = number % 10;
-//        if (number / 10 < 10) {
-//            return sum + number / 10;
-//        } else {
-//            return sum + sumAllDigits(String.valueOf(number / 10));
-//        }
-//    }
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+//        FirebaseCrash.report(new Exception("My first Android non-fatal error"));
         setViews();
     }
 
