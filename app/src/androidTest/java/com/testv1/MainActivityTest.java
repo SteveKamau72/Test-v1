@@ -18,6 +18,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.withId;
 public class MainActivityTest {
     @Rule
     public ActivityTestRule<MainActivity> mainActivityActivityTestRule = new ActivityTestRule<MainActivity>(MainActivity.class);
+    private String invalidTestValues = "ffe,123";
 
     @Before
     public void setUp() throws Exception {
@@ -28,6 +29,14 @@ public class MainActivityTest {
     public void testEmptyInputScenario() {//user clicks button with empty input
         //input some text
         Espresso.onView(withId(R.id.editText)).perform(typeText(""));
+        //perform button click
+        Espresso.onView(withId(R.id.go)).perform(click());
+    }
+
+    @Test
+    public void testInvalidInputScenario() {//user clicks button with invalid input
+        //input some text
+        Espresso.onView(withId(R.id.editText)).perform(typeText(invalidTestValues));
         //perform button click
         Espresso.onView(withId(R.id.go)).perform(click());
     }
