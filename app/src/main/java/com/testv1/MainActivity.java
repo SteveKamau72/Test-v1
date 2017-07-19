@@ -15,6 +15,17 @@ public class MainActivity extends AppCompatActivity {
     TextView tvResults;
     String input;
 
+    //    public int sumAllDigits(String input) {
+//        int number = Integer.valueOf(input.replaceAll("\\D+", ""));
+//        int sum = number % 10;
+//        if (number / 10 < 10) {
+//            return sum + number / 10;
+//        } else {
+//            return sum + sumAllDigits(String.valueOf(number / 10));
+//        }
+//    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,9 +45,8 @@ public class MainActivity extends AppCompatActivity {
                     displayToastError(getString(R.string.empty_text));
                 } else if (!input.matches("[0-9, /,]+")) {//check if string has only numbers and commas
                     displayToastError(getString(R.string.invalid_text));
-                } else {//text is valid, so we remove all commas with regex and cast to int.
-                    // We send that to sumAllDigits(int) and set the result to textview
-                    tvResults.setText("" + sumAllDigits(Integer.valueOf(input.replaceAll("\\D+", ""))));
+                } else {//text is valid, so We send that to sumAllDigits(String) and set the result to textview
+                    tvResults.setText("" + sumAllDigits(input));
                 }
             }
         });
@@ -46,12 +56,8 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(MainActivity.this, error, Toast.LENGTH_LONG).show();
     }
 
-    public int sumAllDigits(int number) {
-        int sum = number % 10;
-        if (number / 10 < 10) {
-            return sum + number / 10;
-        } else {
-            return sum + sumAllDigits(number / 10);
-        }
+    public long sumAllDigits(String input) {//we remove all commas with regex and cast to long.
+        long i = Long.parseLong(input.replaceAll("\\D+", ""));
+        return i == 0 ? 0 : i % 10 + sumAllDigits(String.valueOf(i / 10));
     }
 }
