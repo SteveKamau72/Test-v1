@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Test v1</string>
+    <string name="go">Go</string>
+    <string name="input_numbers">Numbers</string>
+    <string name="empty_text">Cannot be empty</string>
+    <string name="invalid_text">Invalid input</string>
+</resources>
