@@ -10,19 +10,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
-import com.google.firebase.crash.FirebaseCrash;
 
 public class MainActivity extends AppCompatActivity {
     EditText editText;
     Button btnGo;
     TextView tvResults;
     String input;
+    FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        FirebaseCrash.report(new Exception("My first Android non-fatal error"));
+        //To test out crash by uncommenting this line
+        //FirebaseCrash.report(new Exception("My first Android non-fatal error"));
+        // Obtain the FirebaseAnalytics instance.
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         setViews();
     }
 
@@ -41,6 +44,10 @@ public class MainActivity extends AppCompatActivity {
                 } else {//text is valid, so We send that to sumAllDigits(String) and set the result to textview
                     tvResults.setText("" + sumAllDigits(input));
                 }
+                //firebase analytics for button click event
+                Bundle params = new Bundle();
+                params.putString("go_button", input);
+                mFirebaseAnalytics.logEvent("on_click", params);
             }
         });
     }
