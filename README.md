@@ -10,4 +10,4 @@ When the Go button is clicked
     i.e "125, 254, 10, 6, 4765" = (1+2+5) + (2+5+4) + (1+0) + 6 + (4+7+6+5)
 
 # Extras:
-1. Used [Firebase Crash Reporting](https://firebase.google.com/docs/crash/)
+1. For analytics and crash reporting i used [Firebase Analytics](https://firebase.google.com/docs/analytics/android/start/) and [Firebase Crash Reporting](https://firebase.google.com/docs/crash/)
